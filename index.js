@@ -1,23 +1,23 @@
-import{S as v}from"./assets/vendor-g6-w1428.js";(function(){const r=document.createElement("link").relList;if(r&&r.supports&&r.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))n(e);new MutationObserver(e=>{for(const o of e)if(o.type==="childList")for(const i of o.addedNodes)i.tagName==="LINK"&&i.rel==="modulepreload"&&n(i)}).observe(document,{childList:!0,subtree:!0});function s(e){const o={};return e.integrity&&(o.integrity=e.integrity),e.referrerPolicy&&(o.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?o.credentials="include":e.crossOrigin==="anonymous"?o.credentials="omit":o.credentials="same-origin",o}function n(e){if(e.ep)return;e.ep=!0;const o=s(e);fetch(e.href,o)}})();const L="50362686-a19d598e286bdc8c634e59341",b="https://pixabay.com/api/";async function w(t,r=1,s=15){const n=await fetch(`${b}?key=${L}&q=${encodeURIComponent(t)}&image_type=photo&orientation=horizontal&safesearch=true&page=${r}&per_page=${s}`);if(!n.ok)throw new Error("Failed to fetch images");return await n.json()}const c=document.querySelector(".gallery"),d=document.querySelector(".load-more"),u=document.querySelector(".loader"),$=new v(".gallery a");function S(t){const r=t.map(({webformatURL:s,largeImageURL:n,tags:e,likes:o,views:i,comments:h,downloads:g})=>`
-      <a href="${n}" class="gallery-item">
-        <img src="${s}" alt="${e}" loading="lazy"/>
+import{a as w,S,i as c}from"./assets/vendor-BLPZKqeQ.js";(function(){const r=document.createElement("link").relList;if(r&&r.supports&&r.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))o(e);new MutationObserver(e=>{for(const t of e)if(t.type==="childList")for(const a of t.addedNodes)a.tagName==="LINK"&&a.rel==="modulepreload"&&o(a)}).observe(document,{childList:!0,subtree:!0});function i(e){const t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?t.credentials="include":e.crossOrigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function o(e){if(e.ep)return;e.ep=!0;const t=i(e);fetch(e.href,t)}})();const q="https://pixabay.com/api/",M="50362686-a19d598e286bdc8c634e59341";async function u(s,r=1,i=40){try{const o=await w.get(q,{params:{key:M,q:s,image_type:"photo",orientation:"horizontal",safesearch:!0,page:r,per_page:i}}),{hits:e,totalHits:t}=o.data;return{hits:e,totalHits:t}}catch(o){throw console.error("Помилка під час завантаження зображень:",o),o}}const f=document.querySelector(".gallery"),p=document.querySelector(".load-more"),m=document.querySelector(".loader"),$=new S(".gallery a");function h(s){const r=s.map(({webformatURL:i,largeImageURL:o,tags:e,likes:t,views:a,comments:L,downloads:b})=>`
+      <a href="${o}" class="gallery-item">
+        <img src="${i}" alt="${e}" loading="lazy"/>
         <div class="image-info">
           <div class="info-block">
             <p class="info-label">Likes</p>
-            <p class="info-value">${o}</p>
+            <p class="info-value">${t}</p>
           </div>
           <div class="info-block">
             <p class="info-label">Views</p>
-            <p class="info-value">${i}</p>
+            <p class="info-value">${a}</p>
           </div>
           <div class="info-block">
             <p class="info-label">Comments</p>
-            <p class="info-value">${h}</p>
+            <p class="info-value">${L}</p>
           </div>
           <div class="info-block">
             <p class="info-label">Downloads</p>
-            <p class="info-value">${g}</p>
+            <p class="info-value">${b}</p>
           </div>
         </div>
-      </a>`).join("");c.insertAdjacentHTML("beforeend",r),$.refresh()}function q(){c.innerHTML=""}function B(){u.classList.remove("hidden")}function M(){u.classList.add("hidden")}function E(){d.classList.remove("hidden")}function f(){d.classList.add("hidden")}const O=document.querySelector("#search-form"),P=document.querySelector(".load-more"),m=document.querySelector(".end-message");let a=1,p="",l=0;O.addEventListener("submit",async t=>{t.preventDefault();const r=t.target.elements.searchQuery.value.trim();r&&(p=r,a=1,q(),f(),m.classList.add("hidden"),await y())});P.addEventListener("click",async()=>{a+=1,await y()});async function y(){try{B();const{hits:t,totalHits:r}=await w(p,a);l=r,S(t),M(),document.querySelectorAll(".gallery-item").length<l?E():(f(),m.classList.remove("hidden")),a>1&&A()}catch(t){console.error(t)}}function A(){const{height:t}=document.querySelector(".gallery").firstElementChild.getBoundingClientRect();window.scrollBy({top:t*2,behavior:"smooth"})}
+      </a>`).join("");f.insertAdjacentHTML("beforeend",r),$.refresh()}function B(){f.innerHTML=""}function g(){m.classList.remove("hidden")}function l(){m.classList.add("hidden")}function y(){p.classList.remove("hidden")}function v(){p.classList.add("hidden")}let n=1,d="";const P=document.querySelector("#search-form"),E=document.querySelector(".load-more");P.addEventListener("submit",async s=>{s.preventDefault();const r=s.target.searchQuery.value.trim();if(!r){c.info({title:"Увага",message:"Будь ласка, введіть пошуковий запит.",position:"topRight"});return}d=r,n=1,B(),v(),g();try{const{hits:i,totalHits:o}=await u(d,n);if(l(),i.length===0){c.warning({title:"Увага",message:"За вашим запитом не знайдено жодного зображення.",position:"topRight"});return}h(i),o>n*40&&y()}catch(i){l(),c.error({title:"Помилка",message:"Щось пішло не так. Спробуйте ще раз.",position:"topRight"}),console.error(i)}});E.addEventListener("click",async()=>{n+=1,g(),v();try{const{hits:s,totalHits:r}=await u(d,n);l(),h(s);const i=Math.ceil(r/40);n<i?y():c.info({title:"Інформація",message:"Це всі результати пошуку.",position:"topRight"});const{height:o}=document.querySelector(".gallery").firstElementChild.getBoundingClientRect();window.scrollBy({top:o*2,behavior:"smooth"})}catch(s){l(),console.error(s)}});
 //# sourceMappingURL=index.js.map
